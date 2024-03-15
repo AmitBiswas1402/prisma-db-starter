@@ -3,17 +3,14 @@
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["fullTextIndex", "fullTextSearch"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 model Task {
-  id        String   @id @default(uuid())
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
   title     String
-
 }
